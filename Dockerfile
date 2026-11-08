@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-devel
+FROM pytorch/pytorch:2.8.0-cuda12.8-cudnn9-devel
 
 USER root
 
@@ -19,7 +19,10 @@ WORKDIR /workspace
 RUN git clone https://github.com/SWivid/F5-TTS.git \
     && cd F5-TTS \
     && git submodule update --init --recursive \
-    && pip install -e . --no-cache-dir
+    && pip install -e . --no-cache-dir \
+        "torch==2.8.0" \
+        "torchaudio==2.8.0" \
+        "torchcodec==0.7.0"
 
 ENV SHELL=/bin/bash
 
